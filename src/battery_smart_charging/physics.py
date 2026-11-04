@@ -1,11 +1,12 @@
 """Author's equivalent-circuit + lumped thermal model, extracted from notebook cells 3-6.
 
 Physics equations are maintained from the uploaded notebook (not the prior illustrative
-implementation). PANmodel.mat is external research input and is not redistributed.
+implementation). The author-supplied MATLAB v5 model is loaded using SciPy.
 """
 
 import numpy as np
 from scipy.interpolate import interp1d
+from scipy.io import loadmat
 
 def make_OCVfromSOCtemp(model_data, T):
     SOC = np.array(model_data['SOC'])
@@ -39,13 +40,15 @@ def make_SOCfromOCVtemp(model_data, T):
 class ElectricalModel:
     def __init__(self, model_path, number_of_cells, T, dt, model_data=None):
         if model_data is None:
-            from mat4py import loadmat
-            data = loadmat(str(model_path))
-        else:
-            data = {'model': model_data}
-        # print(f"Initializing Battery : {data['model']['name']}")
-        self.model_data = data['model']
-        self.temps = data['model']['temps']
+            # ``simplify_cells`` returns the same dict-like arrays expected by
+            # the original mat4py-based notebook loader. Do not alter the
+            # electrical/thermal equations when switching file readers.
+            data = loadmat(str(model_path), simplify_cells=True)
+            if 'model' not in data or not isinstance(data['model'], dict):
+                raise ValueError('PANmodel.mat must contain a MATLAB struct named model')
+            model_data = data['model']
+        self.model_data = model_data
+        self.temps = self.model_data['temps']
         self.number_of_cells = number_of_cells
         self.T = T
 

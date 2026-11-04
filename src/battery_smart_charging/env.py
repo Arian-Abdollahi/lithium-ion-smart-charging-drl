@@ -24,7 +24,7 @@ class LIBPackEnv(gymnasium.Env):
             raise FileNotFoundError(
                 f"Battery parameter model not found: {model}. "
                 "Supply the original PANmodel.mat via --model-mat; "
-                "it is not included with this repository."
+                "expected models/PANmodel.mat for a local checkout."
             )
         self.model = str(model)
         self.number_of_cells = number_of_cells

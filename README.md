@@ -94,7 +94,9 @@ battery-smart-charging-thesis/
 │   └── evaluate.py         # Deterministic evaluation / CSV export CLI
 ├── notebooks/
 │   └── original_wattention.ipynb  # Full original code, outputs cleared
-├── models/README.md        # How to supply the missing PANmodel.mat
+├── models/
+│   ├── PANmodel.mat        # Author-supplied MATLAB battery model (private repository)
+│   └── README.md           # File provenance, schema and checksum
 ├── scripts/               # Smoke check and monitor plotting
 ├── tests/                 # Synthetic unit tests; no fabricated thesis results
 ├── docs/                  # Research evidence, provenance, reproducibility
@@ -106,7 +108,7 @@ battery-smart-charging-thesis/
 
 ## Requirements and setup
 
-The original notebook loads a **separate calibrated MATLAB model file** from Kaggle. It is **not embedded in the notebook** and was **not included** in the supplied thesis archive. This file is mandatory for real model-based training/evaluation. Please obtain the authorized original `PANmodel.mat` and place it at `models/PANmodel.mat` (Git ignores `.mat` model assets).
+The author has now supplied the previously missing **MATLAB battery parameter file** as a separate upload, and it is committed unchanged at [`models/PANmodel.mat`](models/PANmodel.mat) **in this private repository**. The `model` struct contains the temperature-dependent ECM parameters and SOC/OCV tables. Its SHA-256 checksum and provenance are recorded in [`models/README.md`](models/README.md). The loader uses SciPy and no Kaggle mount path is required. Rights to publish the model publicly have **not** been established.
 
 ```bash
 python -m venv .venv
@@ -161,7 +163,7 @@ python scripts/plot_monitor.py runs/attention/monitor.csv --output outputs/atten
 
 - **Original source:** [`notebooks/original_wattention.ipynb`](notebooks/original_wattention.ipynb), code cells preserved with outputs cleared. Kaggle paths in this archival notebook still refer to the author's original environment.
 - **Refactored software:** The physical dynamics, reward equations, state representation and attention extractor are from the uploaded notebook. `env.py` corrects the misleading training-log `success` flag: the original field contained `had_safety_violation`. The new `safety_violation_ever` field retains that diagnostic. The target/termination logic and reward are not rewritten.
-- **Missing inputs:** The external `PANmodel.mat`, checkpoint archives, replay buffers, and monitor files from the original training sessions were not provided. **Scientific reproduction of the reported thesis curves has not been verified.**
+- **Original model available:** `models/PANmodel.mat` is the supplied MATLAB battery parameter file; its format and a smoke-run of the physics model are covered by tests. **Still missing:** original checkpoint archives, replay buffers, and monitor/evaluation records. **Scientific reproduction of the reported thesis curves has not been verified.**
 - **Baseline:** The MLP training CLI is a comparison convenience, not a recovered MLP-baseline notebook or original baseline checkpoint.
 - **Security and physical safety:** This is a simulation. Do not connect control outputs to real cells without independent verification and hardware safety systems.
 
@@ -171,4 +173,4 @@ Further details: [reproducibility](docs/reproducibility.md), [provenance](docs/s
 
 Cite the **thesis** for published research findings; see [CITATION.cff](CITATION.cff). No public license is assumed, since the manuscript contains a university rights declaration. Confirm publication and distribution permissions before making a public repository.
 
-The [GitHub publication guide](docs/publish-to-github.md) explains how to publish this already initialized Git repository while preserving its commit history. The remote repository was **not automatically created**.
+The code is hosted in the [private GitHub repository](https://github.com/Arian-Abdollahi/lithium-ion-smart-charging-drl). Do not change its visibility until the university's research rights and the model file's distribution permissions have been reviewed. See the [publication guide](docs/publish-to-github.md).

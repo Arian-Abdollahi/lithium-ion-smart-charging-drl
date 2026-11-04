@@ -19,6 +19,6 @@ cd lithium-ion-smart-charging-drl
 python -m pip install -e '.[rl,plot,dev]'
 ```
 
-The project deliberately omits `PANmodel.mat`, trained models and replay buffers, thesis PDF, and original copyrighted figures. Add the authorized MATLAB model at `models/PANmodel.mat` locally; Git will ignore it.
+The private repository now includes the author-uploaded `models/PANmodel.mat`, but still omits trained models, replay buffers, thesis PDF, and original copyrighted figures. The model has no verified public redistribution license. Before changing repository visibility to public, remove the model from the **entire published history** (and from generated release archives), not merely the current working tree. Refer to `models/README.md` for provenance and checksum.
 
 Do not assume the README's thesis-reported numbers have been reproduced by the new modular code until all external model/training assets are available and an equivalence study has been completed.

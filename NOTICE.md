@@ -12,6 +12,9 @@ holders before the repository is made public.
   supplied notebook's source code**.
 - The README summarizes selected findings **from the thesis PDF**, but the
   full report and original figures are not redistributed by this repository.
+- The MATLAB battery parameter file `models/PANmodel.mat` was uploaded by the
+  author and is committed for **private research access only**. This is not
+  evidence of permission for redistribution outside the private repository.
 - No license is granted by default. Select a license only with the proper
   authorization.
 

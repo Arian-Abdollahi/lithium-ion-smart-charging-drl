@@ -7,10 +7,10 @@
 - The thesis-reported numeric observations in the README were sourced from the PDF, not recomputed from training traces.
 - Unit tests use **synthetic parameter values solely for software correctness checks**, never thesis performance claims.
 
-## Required files not supplied
+## Original model supplied; remaining missing experimental artifacts
 
-1. **Battery parameter model:** `PANmodel.mat` from the original Kaggle input dataset. It defines temperature-dependent ECM parameter tables, OCV-SOC relationships, and related values. Place an authorized copy at `models/PANmodel.mat` and pass the path explicitly.
-2. **Original checkpoints and replay buffers:** The notebook resumes from an existing pre-trained SAC policy and replay buffer. Without these, no faithful reproduction of the continuation session is possible.
+1. **Battery parameter model (NOW SUPPLIED):** `models/PANmodel.mat` is the author's uploaded MATLAB v5 file, tracked in the **private** repository. It defines temperature-dependent ECM parameter tables and SOC/OCV relationships. Integrity and structure are checked by `tests/test_panmodel.py`; see [`../models/README.md`](../models/README.md) for its SHA-256 checksum and distribution caveat.
+2. **Original checkpoints and replay buffers (STILL MISSING):** The notebook resumes from an existing pre-trained SAC policy and replay buffer. Without these, no faithful reproduction of the continuation session is possible.
 3. **Recorded training monitor CSVs and evaluation records:** The original paths in notebook cells 14 and 27–28 resolve to Kaggle datasets absent from this export.
 4. **Consistent evaluation settings:** The original cell 26 forces the cooling action to `0.35`. The CLI makes this override explicit and optional.
 
@@ -40,7 +40,7 @@ The example 10,000 steps are just a small **new run**, not a reproduction of the
 
 ## Scope and limitations
 
-- No end-to-end reproduction of the PDF plots is claimed until exact model parameters, original trained checkpoints, and training data are available.
+- The author-supplied MATLAB model is now available and supports direct-model validation. No end-to-end reproduction of the PDF plots is claimed until the original trained checkpoints and evaluation/training records are available and independently verified.
 - The notebook's `info['success']` flag was incorrectly tied to a historical safety violation. This refactor logs a corrected value and exposes the original meaning separately. Comparisons with historical monitor CSVs must account for this.
 - The source calculates smoothness cost but does not apply it to reward, despite the prose goals. A future controlled experiment may add it; that would be a **different objective**.
 - The pack action model assumes independently actuated cell charging channels. It cannot be deployed on arbitrary series-connected hardware without an appropriate electrical topology and verified hardware safety limits.

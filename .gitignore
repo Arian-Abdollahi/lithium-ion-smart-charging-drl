@@ -28,6 +28,8 @@ checkpoints/
 
 # Battery parameters, thesis archives and restricted assets
 models/*.mat
+# Author-provided calibrated model, tracked only in this PRIVATE repository.
+!models/PANmodel.mat
 *.pdf
 *.rar
 private/
