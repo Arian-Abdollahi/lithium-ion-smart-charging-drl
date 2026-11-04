@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "battery-smart-charging-thesis"
+version = "0.2.0"
+description = "Notebook-derived SAC and attention for smart lithium-ion battery charging"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "Arian Abdollahi"}]
+dependencies = ["numpy>=1.24,<3", "scipy>=1.10", "mat4py>=0.6", "gymnasium>=0.29,<2"]
+keywords = ["lithium-ion", "battery", "smart-charging", "reinforcement-learning", "SAC", "attention"]
+classifiers = ["Programming Language :: Python :: 3", "Intended Audience :: Science/Research"]
+
+[project.optional-dependencies]
+rl = ["torch>=2.1", "stable-baselines3>=2.3,<3", "tensorboard>=2.14", "pandas>=2.0"]
+plot = ["pandas>=2.0", "matplotlib>=3.6", "opencv-python>=4.7"]
+dev = ["pytest>=7", "ruff>=0.6", "nbformat>=5"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
