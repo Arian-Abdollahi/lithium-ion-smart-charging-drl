@@ -1,0 +1,41 @@
+# Python caches
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+build/
+dist/
+.coverage
+
+# Model checkpoints and experiment data
+runs/
+logs/
+outputs/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+*.pkl
+*.zip
+*.csv
+*.xlsx
+*.npy
+*.npz
+*.parquet
+
+# Battery parameters, thesis archives and restricted assets
+models/*.mat
+*.pdf
+*.rar
+private/
+data/private/
+.env
+.env.*
+!.env.example
+
+.DS_Store
+.idea/
+.vscode/
