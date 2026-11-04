@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "For scientific outcomes, cite the original thesis. This repository refactors the author's notebook."
+type: software
+title: "Attention-Based Deep Reinforcement Learning for Smart Lithium-Ion Battery Charging"
+version: 0.2.0
+authors:
+  - family-names: "Abdollahi"
+    given-names: "Arian"
+preferred-citation:
+  type: thesis
+  title: "Dynamic Optimization of Smart Charging of Lithium-Ion Batteries Using Advanced Deep Learning Approaches"
+  authors:
+    - family-names: "Abdollahi"
+      given-names: "Arian"
+  year: 2026
+  institution:
+    name: "Amirkabir University of Technology"
